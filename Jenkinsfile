@@ -1,42 +1,51 @@
 pipeline{
     agent any
-    environment{
-        DIRECTORY_PATH = "C:/code"
-        TESTING_ENVIRONMENT = "testing"
-        PRODUCTION_ENVIRONMENT = "tobias"
     }
     stages{
         stage('Build'){
             steps{
-                echo "Fetch the source code from the directory path specified by the environment variable"
-                echo "Compile the code and generate any necessary artefacts"
+                echo "Tool used: Maven"
+                echo "Compiling source code..."
+                echo "Packaging application..."
             }
         }
-        stage('Test'){
+        stage('Unit and Integration Tests'){
             steps{
-                echo "Unit tests"
-                echo "Integration tests"
+                echo "Tool used: JUnit"
+                echo "Unit testing..."
+                echo "Integration testing..."
             }
         }
-        stage('Code Quality Check'){
+        stage('Code Analysis'){
             steps{
-                echo "Check the quality of the code"
+                echo "Tool used: OWASP Dependency-Check"
+                echo "Analysing code..."
             }
         }
-        stage('Deploy'){
+        stage('Security Scan'){
             steps{
-                echo "Deploy the application to a testing environment specified by the environment variable"
+                echo "Tool used: SonarQube"
+                echo "Scanning for vulnerabilities..."
             }
         }
-        stage('Approval'){
+        stage('Deploy to Staging'){
             steps{
-                sleep 10
+                echo "Tool used: AWS EC2 Instance"
+                echo "Deploying to staging server..."
+            }
+        }
+        stage('Integration Tests on Staging'){
+            steps{
+                echo "Tool used: Selenium"
+                echo "Integration testing"
             }
         }
         stage('Deploy to Production'){
             steps{
-                echo "Deploy the application to production environment, $PRODUCTION_ENVIRONMENT"
+                echo "Tool used: AWS EC2 Instance"
+                echo "Deploying to production..."
             }
         }
     }
+
 }
