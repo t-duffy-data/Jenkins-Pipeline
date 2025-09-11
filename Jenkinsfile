@@ -6,6 +6,7 @@ pipeline{
                 echo "Tool used: Maven"
                 echo "Compiling source code..."
                 echo "Packaging application..."
+                sleep 1
             }
         }
         stage('Unit and Integration Tests'){
@@ -48,4 +49,5 @@ pipeline{
     }
 
 }
+
 
